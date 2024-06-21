@@ -32,6 +32,8 @@ mixin _$Wine {
   String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
   String get image => throw _privateConstructorUsedError;
+  @JsonKey(name: 'price')
+  int get price => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,8 @@ abstract class $WineCopyWith<$Res> {
       @JsonKey(name: 'wine') String wine,
       @JsonKey(name: 'rating') Rating? rating,
       @JsonKey(name: 'location') String location,
-      @JsonKey(name: 'image') String image});
+      @JsonKey(name: 'image') String image,
+      @JsonKey(name: 'price') int price});
 
   $RatingCopyWith<$Res>? get rating;
 }
@@ -73,6 +76,7 @@ class _$WineCopyWithImpl<$Res, $Val extends Wine>
     Object? rating = freezed,
     Object? location = null,
     Object? image = null,
+    Object? price = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -99,6 +103,10 @@ class _$WineCopyWithImpl<$Res, $Val extends Wine>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 
@@ -127,7 +135,8 @@ abstract class _$$_WineCopyWith<$Res> implements $WineCopyWith<$Res> {
       @JsonKey(name: 'wine') String wine,
       @JsonKey(name: 'rating') Rating? rating,
       @JsonKey(name: 'location') String location,
-      @JsonKey(name: 'image') String image});
+      @JsonKey(name: 'image') String image,
+      @JsonKey(name: 'price') int price});
 
   @override
   $RatingCopyWith<$Res>? get rating;
@@ -148,6 +157,7 @@ class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
     Object? rating = freezed,
     Object? location = null,
     Object? image = null,
+    Object? price = null,
   }) {
     return _then(_$_Wine(
       id: null == id
@@ -174,6 +184,10 @@ class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
+      price: null == price
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -187,7 +201,8 @@ class _$_Wine implements _Wine {
       @JsonKey(name: 'wine') this.wine = '',
       @JsonKey(name: 'rating') this.rating,
       @JsonKey(name: 'location') this.location = '',
-      @JsonKey(name: 'image') this.image = ''});
+      @JsonKey(name: 'image') this.image = '',
+      @JsonKey(name: 'price') this.price = 0});
 
   factory _$_Wine.fromJson(Map<String, dynamic> json) => _$$_WineFromJson(json);
 
@@ -209,10 +224,13 @@ class _$_Wine implements _Wine {
   @override
   @JsonKey(name: 'image')
   final String image;
+  @override
+  @JsonKey(name: 'price')
+  final int price;
 
   @override
   String toString() {
-    return 'Wine(id: $id, winery: $winery, wine: $wine, rating: $rating, location: $location, image: $image)';
+    return 'Wine(id: $id, winery: $winery, wine: $wine, rating: $rating, location: $location, image: $image, price: $price)';
   }
 
   @override
@@ -226,13 +244,14 @@ class _$_Wine implements _Wine {
             (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.image, image) || other.image == image));
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.price, price) || other.price == price));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, winery, wine, rating, location, image);
+  int get hashCode => Object.hash(
+      runtimeType, id, winery, wine, rating, location, image, price);
 
   @JsonKey(ignore: true)
   @override
@@ -255,7 +274,8 @@ abstract class _Wine implements Wine {
       @JsonKey(name: 'wine') final String wine,
       @JsonKey(name: 'rating') final Rating? rating,
       @JsonKey(name: 'location') final String location,
-      @JsonKey(name: 'image') final String image}) = _$_Wine;
+      @JsonKey(name: 'image') final String image,
+      @JsonKey(name: 'price') final int price}) = _$_Wine;
 
   factory _Wine.fromJson(Map<String, dynamic> json) = _$_Wine.fromJson;
 
@@ -277,6 +297,9 @@ abstract class _Wine implements Wine {
   @override
   @JsonKey(name: 'image')
   String get image;
+  @override
+  @JsonKey(name: 'price')
+  int get price;
   @override
   @JsonKey(ignore: true)
   _$$_WineCopyWith<_$_Wine> get copyWith => throw _privateConstructorUsedError;

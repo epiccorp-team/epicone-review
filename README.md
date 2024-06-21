@@ -1,25 +1,132 @@
-# 앱 리뷰: Flutter 앱
+# 앱 리뷰: Wine Store
 
-## 개요
+---
 
-앱 이름: Flutter Review 앱
-플랫폼: Android, iOS
+# 기능 개요
 
-## 설명
+Wine Store는 다음과 같은 기능을 제공합니다.
 
-Flutter Review 앱은 와인 API를 활용하여 와인 정보를 제공하는 Flutter 앱입니다.
-Getx를 사용하여 간편한 상태 관리를 구현하였으며, 사용자는 와인 목록을 확인하고 검색할 수 있습니다.
-리뷰 형태는 코드의 전체적인 흐름을 간단히 설명하면서, 보완할 점에 대한 주관적인 의견을 부담없이 자유롭게 제안주시면 됩니다.
+1. 로그인
+2. 와인 목록 조회
+3. 와인 상세 조회
+4. 와인 구매
 
-## 자료형식
+와인 목록 조회 및 상세 조회는 간단한 형태로 이미 구현 되어 있습니다.\
+리뷰이께서는 나머지 **로그인**과 **와인 구매** 기능을 구현해주세요.\
+앱만 잘 작동한다면 나머지 항목(리팩터링, 개발방법론 적용, 테스팅 등)은 모두 자유입니다!
 
-PDF, 노션, 블로그 등 자유
+### 로그인
 
-## 제출방법
+- 유저는 'Sign In' 버튼을 클릭하여 로그인을 할 수 있습니다.
+- 유저가 기입해야하는 로그인에 필요한 정보는 없습니다.
+- 유저는 앱상에서 현재의 로그인 여부를 확인할 수 있습니다.
+- 로그인 API
+  - Method: GET
+  - URL: https://dev-api.epicone.co.kr/api/v1/review/user
+  - 20%의 확률로 로그인을 실패합니다.
+
+```json
+// response : 로그인 성공
+// statusCode : 200
+{
+  "id": "5ca9b7a5-8701-4e0a-8051-695943a37d1f",
+  "name": "에픽원",
+  // 사용 가능한 포인트
+  "point_remained": 1000,
+  // 사용 가능한 기능들
+  "features": [
+    {
+      "key": "order",
+      "name": "구매하기",
+      // 해당 기능에 사용할 수 있는 포인트 비율 제한 (기능사용포인트제한)
+      "point_can_use_limit": 0.2
+    }
+  ]
+}
+
+
+// response : 로그인 실패
+// statusCode : 418
+{
+  "message": "실패"
+}
+```
+
+### 와인 구매
+
+- 유저는 와인 상세 페이지에서 'Purchase' 버튼을 눌러 구매하기 페이지로 이동합니다.
+- 구매하기 페이지에서는 다음과 같은 정보를 유저에게 입력받습니다.
+  - 배송 주소
+  - 배송 주소 상세
+    - 주소 검색 외부서비스를 연동하지 않고 사용자에게 직접 입력받습니다.
+  - 사용할 포인트
+- 개발자는 다음과 같은 정보를 임의로 설정합니다.
+  - 주문 이름 (예. 까르띠에 쇼비뇽)
+- 유저는 모든 정보를 입력 후 'Purchase' 버튼을 눌러 와인 구매를 진행합니다.
+- 와인 구매 API
+  - Method: POST
+  - URL: https://dev-api.epicone.co.k/api/v1/review/order
+  - 20%의 확률로 와인 구매를 실패합니다.
+  - Basic {token}
+    - token에 해당하는 값은 User API 에서 주어지는 사용자의 ID 값입니다.
+
+```json
+    // Request Header
+    {
+        // user.id
+        "Authorization": "Basic {token}"
+    }
+
+    // Request Body
+    {
+        "address": "서울 성동구",
+        "address_detail": "광나루로 176 6층 에픽코퍼레이션",
+        "points_used": 4000,
+        "price": 20000,
+        "order_name": "Cloudy Bay Sauvignon Blanc"
+    }
+
+    // Response: 주문 성공
+    // statusCode: 200
+    {
+        "message": "주문 성공"
+    }
+
+    // Response: 주문 실패
+    // statusCode: 418
+    {
+        "message": "잔액이 부족합니다"
+    }
+```
+
+### 포인트 정책
+
+- 사용가능한 포인트는 유저가 보유한 총 포인트를 초과할 수 없습니다.
+  - 유저가 보유한 총 포인트는 로그인 API 에서 `point_remained` 값입니다.
+- 사용가능한 포인트는 기능별로 제한될 수 있습니다.
+  - 기능별 제한은 로그인 API 에서 `features` 값에서 확인할 수 있습니다.
+  - 기능별 제한은 `point_can_use_limit` 값으로 확인할 수 있습니다.
+  - 예를 들어, 주문 기능의 `point_can_use_limit` 값이 0.2라면 사용가능한 포인트는 상품 금액의 20%를 초과할 수 없습니다.
+
+### 기능(Feature) 정의
+
+| Key   | Description        |
+| ----- | ------------------ |
+| order | 구매하기, Purchase |
+
+---
+
+# 제출
+
+### 자료형식
+
+Zip, PR 등 자유
+
+### 제출방법
 
 이메일 : support@epiccorp.io
 
-## 제출기한
+### 제출기한
 
 서류 통과 통보일로 부터 3일 이내
 

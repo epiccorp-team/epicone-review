@@ -13,7 +13,7 @@ class WineRepositoryImpl implements WineRepository {
 
   @override
   Future<List<Wine>> fetchWine() async {
-    Uri uri = Uri.parse('https://api.sampleapis.com/wines/rose');
+    Uri uri = Uri.parse('https://dev-api.epicone.co.kr/api/v1/review/wine');
     final result = await http.get(uri);
 
     var data =

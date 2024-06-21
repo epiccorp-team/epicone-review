@@ -12,6 +12,7 @@ class Wine with _$Wine {
     @JsonKey(name: 'rating') Rating? rating,
     @JsonKey(name: 'location') @Default('') String location,
     @JsonKey(name: 'image') @Default('') String image,
+    @JsonKey(name: 'price') @Default(0) int price,
   }) = _Wine;
 
   factory Wine.fromJson(Map<String, Object?> json) => _$WineFromJson(json);

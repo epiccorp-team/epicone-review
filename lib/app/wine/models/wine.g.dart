@@ -15,6 +15,7 @@ _$_Wine _$$_WineFromJson(Map<String, dynamic> json) => _$_Wine(
           : Rating.fromJson(json['rating'] as Map<String, dynamic>),
       location: json['location'] as String? ?? '',
       image: json['image'] as String? ?? '',
+      price: json['price'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_WineToJson(_$_Wine instance) => <String, dynamic>{
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_WineToJson(_$_Wine instance) => <String, dynamic>{
       'rating': instance.rating,
       'location': instance.location,
       'image': instance.image,
+      'price': instance.price,
     };
 
 _$_Rating _$$_RatingFromJson(Map<String, dynamic> json) => _$_Rating(
