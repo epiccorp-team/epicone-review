@@ -1,3 +1,4 @@
+import 'package:epicone_review/app/auth/bindings/auth_binding.dart';
 import 'package:epicone_review/router/app_pages.dart';
 import 'package:epicone_review/theme.dart';
 import 'package:flutter/material.dart';
@@ -7,9 +8,11 @@ import 'app/root/bindings/root_binding.dart';
 import 'app/root/controllers/root_controller.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 
   RootBinding().dependencies();
+  AuthBinding().dependencies();
 }
 
 class MyApp extends StatelessWidget {

@@ -1,3 +1,4 @@
+import 'package:epicone_review/app/auth/controllers/auth_controller.dart';
 import 'package:epicone_review/app/wine/pages/wine_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class WinePage extends StatefulWidget {
 class _WinePageState extends State<WinePage> {
   final RootController _rootController = RootController.to;
   final WineController _wineController = WineController.to;
+  final AuthController _authController = AuthController.to;
 
   List<Wine> _wines = [];
 
@@ -39,6 +41,44 @@ class _WinePageState extends State<WinePage> {
               pinned: true,
               expandedHeight: 110,
               actions: [
+                _authController.user.value == null
+                    ? _authController.isLoading.value
+                        ? Center(child: CircularProgressIndicator())
+                        : InkWell(
+                            onTap: () {
+                              _authController.login();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1.0),
+                                borderRadius: BorderRadius.circular(13.0),
+                              ),
+                              child: Text('Sign In'),
+                            ),
+                          )
+                    : Row(
+                        children: [
+                          Text(
+                              '${_authController.user.value?.name}님 ${_authController.user.value?.pointRemained}P'),
+                          SizedBox(
+                            width: 8.0,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              _authController.logout();
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(5.0),
+                              decoration: BoxDecoration(
+                                border: Border.all(width: 1.0),
+                                borderRadius: BorderRadius.circular(13.0),
+                              ),
+                              child: Text('Sign Out'),
+                            ),
+                          ),
+                        ],
+                      ),
                 GestureDetector(
                   onTap: () {
                     _rootController
