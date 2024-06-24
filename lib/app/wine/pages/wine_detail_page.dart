@@ -22,18 +22,20 @@ class _WineDetailPageState extends State<WineDetailPage> {
           widget.wine.wine,
         ),
       ),
-      body: Column(
-        children: [
-          Center(
-            child: Image.network(widget.wine.image),
-          ),
-          SizedBox(height: 20),
-          Text(
-            widget.wine.winery,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Image.network(widget.wine.image),
+            ),
+            SizedBox(height: 20),
+            Text(
+              widget.wine.winery,
+              textAlign: TextAlign.center,
+              style: Theme.of(context).textTheme.displayLarge,
+            ),
+          ],
+        ),
       ),
     );
   }
