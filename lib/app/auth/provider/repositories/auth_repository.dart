@@ -7,9 +7,9 @@ abstract class AuthRepository {
 }
 
 class AuthRepositoryImpl implements AuthRepository {
-  AuthRepositoryImpl();
+  final AuthApi authApi;
 
-  final authApi = AuthApi();
+  AuthRepositoryImpl({required this.authApi});
 
   // 로그인 메소드, 오류 발생시 3회까지 재시도 디폴트
   @override

@@ -7,21 +7,25 @@ class AuthController extends GetxController {
   static AuthController get to => Get.find();
 
   final AuthRepository _authRepository;
-  var isLoading = false.obs;
+  AuthController(this._authRepository);
+
+  var isLoadingLogin = false.obs;
   var user = Rxn<Login>(null);
 
-  AuthController(this._authRepository);
+  Map<String, String> getTokenHeader() {
+    return {'Authorization': 'Basic ${user.value?.id}'};
+  }
 
   // 로그인, 실패 시 5번 재요청 후 오류 다이얼로그
   void login() async {
     try {
-      isLoading(true);
+      isLoadingLogin(true);
       var res = await _authRepository.login(retryCnt: 5);
       user.value = res;
     } catch (e) {
       _errorDialog('로그인에 실패했습니다.\n오류가 반복될 경우 고객센터 문의 부탁드립니다.');
     } finally {
-      isLoading(false);
+      isLoadingLogin(false);
     }
   }
 
