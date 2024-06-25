@@ -42,7 +42,7 @@ class _WinePageState extends State<WinePage> {
               expandedHeight: 110,
               actions: [
                 _authController.user.value == null
-                    ? _authController.isLoading.value
+                    ? _authController.isLoadingLogin.value
                         ? Center(child: CircularProgressIndicator())
                         : InkWell(
                             onTap: () {
