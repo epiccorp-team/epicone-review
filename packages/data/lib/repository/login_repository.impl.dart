@@ -10,7 +10,7 @@ import 'package:flutter/foundation.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   @override
-  Future<ApiState<LoginEntity>>? login() async {
+  Future<ApiState<LoginEntity>> login() async {
       return await compute((LoginDto loginDto) async {
         return await loginDto.toDomain();
       }, await LoginApi(LoginDio.loginDio()).getUer(),
