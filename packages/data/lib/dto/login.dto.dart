@@ -17,11 +17,15 @@ class LoginDto {
   @JsonKey(name: 'features')
   List<LoginFeaturesDto>? features; 
 
+  @JsonKey(name: 'message')
+  String? message;
+
   LoginDto({
     this.id,
     this.name,
     this.pointRemained,
     this.features,
+    this.message,
   });
 
   factory LoginDto.fromJson(Map<String, dynamic> json) =>

@@ -13,6 +13,7 @@ LoginDto _$LoginDtoFromJson(Map<String, dynamic> json) => LoginDto(
       features: (json['features'] as List<dynamic>?)
           ?.map((e) => LoginFeaturesDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$LoginDtoToJson(LoginDto instance) => <String, dynamic>{
@@ -20,4 +21,5 @@ Map<String, dynamic> _$LoginDtoToJson(LoginDto instance) => <String, dynamic>{
       'name': instance.name,
       'point_remained': instance.pointRemained,
       'features': instance.features,
+      'message': instance.message,
     };
