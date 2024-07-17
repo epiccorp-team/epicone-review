@@ -23,8 +23,6 @@ dependencies:
   retrofit: ^4.1.0
   retrofit_generator: '>=7.0.0 <8.0.0'
   dio: ^5.5.0+1
-  
-  get_it: 7.0.0
 
   data:
     path: packages/data
