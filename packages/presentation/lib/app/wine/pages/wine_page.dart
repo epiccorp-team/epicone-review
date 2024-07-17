@@ -1,4 +1,4 @@
-import 'package:epicone_review/app/wine/pages/wine_detail_page.dart';
+import 'wine_detail_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

@@ -1,4 +1,4 @@
-name: epicone_review
+name: presentation
 description: A new Flutter project.
 publish_to: "none"
 
@@ -14,20 +14,10 @@ dependencies:
     sdk: flutter
 
   get: ^4.6.5
-  http: ^1.0.0
   intl: ^0.18.0
   cupertino_icons: ^1.0.2
   json_serializable: ^6.7.0
   freezed_annotation: ^2.2.0
-  
-  get_it: 7.0.0
-
-  data:
-    path: packages/data
-  domain:
-    path: packages/domain
-  presentation:
-    path: packages/presentation
 
 dev_dependencies:
   flutter_test:
