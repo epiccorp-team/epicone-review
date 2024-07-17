@@ -1,3 +1,4 @@
+import 'package:domain/entity/login_features.entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'login_features.dto.g.dart';
