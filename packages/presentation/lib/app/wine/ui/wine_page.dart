@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../main/controller/main_controller.dart';
+import '../../main/controller/main_controller.dart';
 import '../controllers/wine_controller.dart';
 import '../models/wine.dart';
 
@@ -46,7 +46,7 @@ class _WinePageState extends State<WinePage> {
                     _rootController
                         .updateTheme(!_rootController.isDarkMode.value);
                   },
-                  child: Padding(
+                  child: const Padding(
                     padding:
                         EdgeInsets.only(left: 10, top: 5, right: 10, bottom: 5),
                     child: Icon(
@@ -60,9 +60,9 @@ class _WinePageState extends State<WinePage> {
                 background: SafeArea(
                   child: Column(
                     children: <Widget>[
-                      SizedBox(height: 50.0),
+                      const SizedBox(height: 50.0),
                       Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             left: 5, right: 5, top: 10, bottom: 0),
                         child: SizedBox(
                           width: double.infinity,
@@ -80,7 +80,7 @@ class _WinePageState extends State<WinePage> {
                                 }).toList();
                               });
                             },
-                            prefix: Padding(
+                            prefix: const Padding(
                               padding: EdgeInsets.only(
                                   left: 9, top: 6, right: 9, bottom: 6),
                               child: Icon(
@@ -96,7 +96,7 @@ class _WinePageState extends State<WinePage> {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.only(top: 0, bottom: 40, left: 5, right: 5),
+              padding: const EdgeInsets.only(top: 0, bottom: 40, left: 5, right: 5),
               sliver: SliverList.builder(
                 itemBuilder: (context, index) {
                   final item = _wines[index];
@@ -104,7 +104,7 @@ class _WinePageState extends State<WinePage> {
                   return Card(
                     child: ListTile(
                       onTap: () {
-                        Get.toNamed(Routes.WINE, arguments: {'wine': item});
+                        Get.toNamed(Routes.WINE_DETAIL, arguments: {'wine': item});
                       },
                       title: Text(item.wine,
                           style: Theme.of(context).textTheme.titleLarge),
@@ -120,19 +120,19 @@ class _WinePageState extends State<WinePage> {
                             children: [
                               Row(
                                 children: [
-                                  Icon(Icons.star, size: 15),
-                                  SizedBox(width: 5),
+                                  const Icon(Icons.star, size: 15),
+                                  const SizedBox(width: 5),
                                   Text(item.rating!.average,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium),
                                 ],
                               ),
-                              SizedBox(width: 20),
+                              const SizedBox(width: 20),
                               Row(
                                 children: [
-                                  Icon(Icons.reviews, size: 15),
-                                  SizedBox(width: 5),
+                                  const Icon(Icons.reviews, size: 15),
+                                  const SizedBox(width: 5),
                                   Text(item.rating!.reviews,
                                       style: Theme.of(context)
                                           .textTheme

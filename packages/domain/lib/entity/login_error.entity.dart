@@ -17,6 +17,13 @@ class LoginErrorEntity extends LoginEntity {
   factory LoginErrorEntity.fromJson(Map<String, dynamic> json) =>
       _$LoginErrorEntityFromJson(json);
 
+  factory LoginErrorEntity.copy({
+    String? message,
+    String? exception,
+  }) => LoginErrorEntity(
+    message: message, exception: exception
+  );
+
   @override
   Map<String, dynamic> toJson() => _$LoginErrorEntityToJson(this);
 }

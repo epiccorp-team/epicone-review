@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:presentation/app/my_page/ui/my_page.dart';
 import 'package:presentation/app/wine/ui/wine_detail_screen.dart';
 
-import '../main/ui/main_screen.dart';
+import '../app/main/ui/main_screen.dart';
 import '../app/wine/bindings/wine_binding.dart';
 import '../app/wine/ui/wine_page.dart';
 
@@ -27,13 +28,20 @@ class AppPages {
         ),
       ],
     ),
+
     GetPage(
       participatesInRootNavigator: true,
       name: Routes.WINE_DETAIL,
       page: () => const WineDetailScreen(),
       bindings: [
-        WineBinding(),
+        
       ],
+    ),
+
+    GetPage(
+      participatesInRootNavigator: true,
+      name: Routes.MY_PAGE,
+      page: () => const MyPage(),
     ),
   ];
 }

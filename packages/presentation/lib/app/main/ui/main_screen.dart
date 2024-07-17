@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:presentation/app/page/my_page.dart';
+import 'package:presentation/app/my_page/ui/my_page.dart';
 import 'package:presentation/bottom_navigation_bar.dart';
 
-import '../../router/app_pages.dart';
-import '../../app/wine/ui/wine_page.dart';
+import '../../../router/app_pages.dart';
+import '../../wine/ui/wine_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});

@@ -17,7 +17,7 @@ class LoginUsecase {
       }, 
       error: (loginErrorEntity, exception) {
         print('[LOGIN USECASE][ERROR] $exception');
-        return loginErrorEntity;
+        return LoginErrorEntity.copy(message: '알 수 없는 이유로 로그인에 실패했어요. 다시 시도해주세요.');
       },
     );
   }
