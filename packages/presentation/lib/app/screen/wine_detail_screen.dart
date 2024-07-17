@@ -1,35 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import '../models/wine.dart';
+import '../wine/models/wine.dart';
 
-class WineDetailPage extends StatefulWidget {
-  final Wine wine;
-  const WineDetailPage({
+class WineDetailScreen extends StatefulWidget {
+  const WineDetailScreen({
     super.key,
-    required this.wine,
   });
 
   @override
-  State<WineDetailPage> createState() => _WineDetailPageState();
+  State<WineDetailScreen> createState() => _WineDetailScreenState();
 }
 
-class _WineDetailPageState extends State<WineDetailPage> {
+class _WineDetailScreenState extends State<WineDetailScreen> {
+  late Wine wine;
+
+  @override
+  void initState() {
+    super.initState();
+    wine = Get.arguments['wine'];
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.wine.wine,
+          wine.wine,
         ),
       ),
       body: Column(
         children: [
           Center(
-            child: Image.network(widget.wine.image),
+            child: Image.network(wine.image),
           ),
           SizedBox(height: 20),
           Text(
-            widget.wine.winery,
+            wine.winery,
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displayLarge,
           ),

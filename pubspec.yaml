@@ -19,6 +19,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   json_serializable: ^6.7.0
   freezed_annotation: ^2.2.0
+
+  retrofit: ^4.1.0
+  retrofit_generator: '>=7.0.0 <8.0.0'
+  dio: ^5.5.0+1
   
   get_it: 7.0.0
 

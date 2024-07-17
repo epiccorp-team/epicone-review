@@ -1,11 +1,13 @@
-import 'wine_detail_page.dart';
+import 'package:presentation/router/app_pages.dart';
+
+import '../screen/wine_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../root/controllers/root_controller.dart';
-import '../controllers/wine_controller.dart';
-import '../models/wine.dart';
+import '../root/controllers/root_controller.dart';
+import '../wine/controllers/wine_controller.dart';
+import '../wine/models/wine.dart';
 
 class WinePage extends StatefulWidget {
   const WinePage({super.key});
@@ -102,11 +104,7 @@ class _WinePageState extends State<WinePage> {
                   return Card(
                     child: ListTile(
                       onTap: () {
-                        Get.to(
-                          () => WineDetailPage(
-                            wine: item,
-                          ),
-                        );
+                        Get.toNamed(Routes.WINE, arguments: {'wine': item});
                       },
                       title: Text(item.wine,
                           style: Theme.of(context).textTheme.titleLarge),

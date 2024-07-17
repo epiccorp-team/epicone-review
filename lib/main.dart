@@ -1,10 +1,10 @@
+import 'package:epicone_review/get_it.dart';
 import 'package:flutter/material.dart';
-import 'package:presentation/app/root/bindings/root_binding.dart';
-import 'package:presentation/main_screen.dart';
+import 'package:presentation/app.dart';
 
 
 void main() {
-  runApp(const MainScreen());
+  ServiceLocator.initializeApp();
 
-  RootBinding().dependencies();
+  runApp(const MyApp());
 }
