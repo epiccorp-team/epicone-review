@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../wine/models/wine.dart';
+import '../models/wine.dart';
 
 class WineDetailScreen extends StatefulWidget {
   const WineDetailScreen({

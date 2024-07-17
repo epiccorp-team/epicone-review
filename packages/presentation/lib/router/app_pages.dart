@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presentation/app/screen/wine_detail_screen.dart';
+import 'package:presentation/app/wine/ui/wine_detail_screen.dart';
 
-import '../app/screen/main_screen.dart';
+import '../main/ui/main_screen.dart';
 import '../app/wine/bindings/wine_binding.dart';
-import '../app/page/wine_page.dart';
+import '../app/wine/ui/wine_page.dart';
 
 part 'app_routes.dart';
 

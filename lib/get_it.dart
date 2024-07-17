@@ -2,7 +2,7 @@ import 'package:data/repository/login_repository.impl.dart';
 import 'package:domain/repository/login_repository.dart';
 import 'package:domain/usecase/login_usecase.dart';
 import 'package:get_it/get_it.dart';
-import 'package:presentation/get/getx.dart';
+import 'package:presentation/main/bindings/main_binding.dart';
 
 class ServiceLocator {
   static var di = GetIt.instance;
@@ -15,7 +15,7 @@ class ServiceLocator {
     di.registerFactory<LoginUsecase>(() => di());
 
     // presentation
-    Getx.initializeApp();
+    MainBinding().dependencies();
   }
 
   GetIt get() => di();

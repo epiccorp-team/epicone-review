@@ -5,7 +5,7 @@ import 'package:presentation/app/page/my_page.dart';
 import 'package:presentation/bottom_navigation_bar.dart';
 
 import '../../router/app_pages.dart';
-import '../page/wine_page.dart';
+import '../../app/wine/ui/wine_page.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -16,8 +16,8 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   final _pages = [
-    WinePage(),
-    MyPage(),
+    const WinePage(),
+    const MyPage(),
   ];
 
   @override
@@ -33,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
         body: Obx(() {
           return _pages[GetBottomNavigationController.to.index.value];
         }),
-        bottomNavigationBar: GetBottomNavigationBar(),
+        bottomNavigationBar: const GetBottomNavigationBar(),
       ),
     );
   }

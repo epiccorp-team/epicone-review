@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app/root/controllers/root_controller.dart';
+import 'main/controller/main_controller.dart';
 import 'router/app_pages.dart';
 import 'theme.dart';
 
@@ -16,7 +16,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    final RootController rootController = RootController.to;
+    final MainController rootController = MainController.to;
 
     return Obx(
       () => GetMaterialApp(
