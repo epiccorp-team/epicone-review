@@ -36,7 +36,7 @@ class _WinePageState extends State<WinePage> {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              title: Text('Wines'),
+              title: const Text('Wines'),
               floating: true,
               pinned: true,
               expandedHeight: 110,

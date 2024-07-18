@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:domain/entity/login_error.entity.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:domain/entity/login.entity.dart';
@@ -15,9 +12,6 @@ class UserController extends GetxController {
   UserController(this._loginUsecase);
 
   final Rxn<LoginEntity?> user = Rxn(null);
-  final RxString userAddress = ''.obs;
-  final RxString userAddressDetail = ''.obs;
-  final RxInt usePoint = 0.obs;
 
   Future<void> login({
     Function()? onSuccess,

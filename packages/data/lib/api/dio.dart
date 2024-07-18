@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 
 class EpicDio {
@@ -9,9 +11,11 @@ class EpicDio {
         return handler.next(options);
       },
       onResponse: (response, handler) {
+        log('[DIO RESPONSE] $response');
         return handler.next(response);
       },
       onError: (error, handler) {
+        log('[DIO ERROR] $error');
         return handler.next(error);
       },
     ));

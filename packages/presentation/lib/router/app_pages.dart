@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:presentation/bindings/purchase_binding.dart';
 import 'package:presentation/ui/customer/login_screen.dart';
 import 'package:presentation/ui/customer/my_page.dart';
 import 'package:presentation/ui/order/order_screen.dart';
@@ -49,6 +50,7 @@ class AppPages {
       participatesInRootNavigator: true,
       name: Routes.ORDER,
       page: () => const OrderScreen(),
+      binding: PurchaseBinding(),
     ),
   ];
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:data/api/dio.dart';
 import 'package:data/api/purchase.api.dart';
 import 'package:data/dto/purchase.dto.dart';
@@ -16,7 +18,7 @@ class PurchaseRepositoryImpl implements PurchaseRepository {
   ) async {
     try {
       var postPurchase = await PurchaseApi(EpicDio.getDio()).purchase(
-        token ?? '',
+        'Basic $token',
         purchaseInfo ?? {},
       );
       return await compute(
@@ -26,6 +28,7 @@ class PurchaseRepositoryImpl implements PurchaseRepository {
         postPurchase,
       );
     } catch (e) {
+      log('[PURCHASE REPOSITORY EXCEPTION] $e');
       return ApiState.error(
         data: PurchaseErrorEntity(
           message: e.toString(),

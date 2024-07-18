@@ -1,11 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:presentation/controller/user_controller.dart';
+import 'package:presentation/controller/purchase_controller.dart';
 
 import '../wine/models/wine.dart';
 
@@ -17,17 +15,8 @@ class OrderScreen extends StatefulWidget {
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  final _userController = UserController.to;
-
+  final _purchaseController = PurchaseController.to;
   late Wine? wine;
-
-  final _code =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
-
-  late String _orderCode;
-
-  late double _pointCanUseLimit;
-  late int _maxCanUsePoint;
 
   final _deliveryController = TextEditingController();
   final _deliveryDetailController = TextEditingController();
@@ -40,30 +29,25 @@ class _OrderScreenState extends State<OrderScreen> {
     super.initState();
     wine = Get.arguments['wine'];
 
-    _orderCode = randomOrderId();
-
-    var user = _userController.user.value;
-    _pointCanUseLimit = user?.features?.first.pointCanUseLimit ?? 0.0;
-    _maxCanUsePoint = min(
-      ((wine?.price ?? 0) * (_pointCanUseLimit ?? 0)).toInt(),
-      user?.pointRemained ?? 0,
-    );
+    _purchaseController.wine = wine;
 
     _deliveryController.addListener(() {
-      _userController.userAddress.value = _deliveryController.text;
+      _purchaseController.userAddress.value = _deliveryController.text;
     });
 
     _deliveryDetailController.addListener(() {
-      _userController.userAddressDetail.value = _deliveryDetailController.text;
+      _purchaseController.userAddressDetail.value =
+          _deliveryDetailController.text;
     });
 
     _usePointController.addListener(() {
       var value = int.parse(_usePointController.text);
-      if (value > _maxCanUsePoint) {
+      if (value > _purchaseController.maxCanUsePoint.value) {
         _exceedMaxPointError.value = true;
       } else {
         _exceedMaxPointError.value = false;
-        _userController.usePoint.value = int.parse(_usePointController.text);
+        _purchaseController.usePoint.value =
+            int.parse(_usePointController.text);
       }
     });
   }
@@ -75,26 +59,6 @@ class _OrderScreenState extends State<OrderScreen> {
     _deliveryController.dispose();
     _deliveryDetailController.dispose();
     _usePointController.dispose();
-  }
-
-  String randomOrderId() {
-    var header = '';
-    var body = '';
-    var tail = '';
-
-    for (var i = 0; i < 9; i++) {
-      header += _code[Random().nextInt(_code.length)];
-    }
-
-    for (var i = 0; i < 9; i++) {
-      body += _code[Random().nextInt(_code.length)];
-    }
-
-    for (var i = 0; i < 9; i++) {
-      tail += _code[Random().nextInt(_code.length)];
-    }
-
-    return '$header - $body - $tail';
   }
 
   @override
@@ -126,6 +90,8 @@ class _OrderScreenState extends State<OrderScreen> {
                         if (_exceedMaxPointError.value) {
                           return;
                         }
+
+                        _purchaseController.purchase();
                       },
                       child: const Text(
                         'Purchase',
@@ -169,7 +135,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    _orderCode,
+                    _purchaseController.orderCode.value,
                     style: const TextStyle(
                       fontSize: 10,
                     ),
@@ -369,7 +335,7 @@ class _OrderScreenState extends State<OrderScreen> {
                               ),
                               showDuration: const Duration(milliseconds: 4000),
                               message:
-                                  '사용 가능한 최대 포인트는\n해당 상품 기준으로 [상품 가격 * ${(_pointCanUseLimit * 100).toInt()}%] 내에서\n내가 보유한 포인트로 결정돼요.',
+                                  '사용 가능한 최대 포인트는\n해당 상품 기준으로 [상품 가격 * ${(_purchaseController.pointCanUseLimit.value * 100).toInt()}%] 내에서\n내가 보유한 포인트로 결정돼요.',
                               triggerMode: TooltipTriggerMode.tap,
                               child: const Icon(
                                 Icons.info_rounded,
@@ -388,7 +354,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       ],
                     ),
                     Text(
-                      '$_maxCanUsePoint',
+                      '${_purchaseController.maxCanUsePoint.value}',
                     ),
                   ],
                 )
