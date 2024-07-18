@@ -131,7 +131,12 @@ class _OrderScreenState extends State<OrderScreen> {
 
                         _purchaseController.purchase(
                           onSuccess: () {
-                            Get.toNamed(Routes.ORDER_COMPLETE);
+                            Get.offNamedUntil(
+                              Routes.ORDER_COMPLETE,
+                              (route) {
+                                return route.settings.name == Routes.MAIN;
+                              },
+                            );
                           },
                           onError: (message) {
                             CommonDialog.showCommonDialog(
