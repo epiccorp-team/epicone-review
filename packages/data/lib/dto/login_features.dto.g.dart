@@ -10,7 +10,7 @@ LoginFeaturesDto _$LoginFeaturesDtoFromJson(Map<String, dynamic> json) =>
     LoginFeaturesDto(
       key: json['key'] as String?,
       name: json['name'] as String?,
-      pointCanUseLimit: (json['point_can_use_limit'] as num?)?.toInt(),
+      pointCanUseLimit: (json['point_can_use_limit'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$LoginFeaturesDtoToJson(LoginFeaturesDto instance) =>

@@ -12,11 +12,13 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<ApiState<LoginEntity>> login() async {
     try {
-      var getUser = await LoginApi(LoginDio.loginDio()).getUer();
-      return await compute((LoginDto loginDto) async {
-        return await loginDto.toDomain();
-      }, getUser,
-    );
+      var getUser = await LoginApi(EpicDio.getDio()).getUer();
+      return await compute(
+        (LoginDto loginDto) async {
+          return await loginDto.toDomain();
+        },
+        getUser,
+      );
     } catch (e) {
       return ApiState.error(
         data: LoginErrorEntity(
@@ -27,5 +29,4 @@ class LoginRepositoryImpl implements LoginRepository {
       );
     }
   }
-
 }

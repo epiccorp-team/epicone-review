@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:presentation/controller/user_controller.dart';
+import 'package:presentation/router/app_pages.dart';
 
 class GetBottomNavigationController extends GetxController {
   static GetBottomNavigationController get to => Get.find();
@@ -12,14 +14,17 @@ class GetBottomNavigationController extends GetxController {
 }
 
 class GetBottomNavigationBar extends GetView<GetBottomNavigationController> {
-  const GetBottomNavigationBar({super.key});
+  final _loginController = UserController.to;
+
+  GetBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      return BottomNavigationBar(
+    return Obx(
+      () {
+        return BottomNavigationBar(
           items: const [
-             BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: '홈',
             ),
@@ -29,12 +34,18 @@ class GetBottomNavigationBar extends GetView<GetBottomNavigationController> {
             ),
           ],
           currentIndex: controller.index.value,
-          onTap: (value) {
-            controller.changeIndex(value);
+          onTap: (value) async {
+            if (value == 1 && _loginController.user.value == null) {
+              var result = await Get.toNamed(Routes.LOGIN);
+              if (result == true) {
+                controller.changeIndex(value);
+              }
+            } else {
+              controller.changeIndex(value);
+            }
           },
         );
       },
     );
   }
-  
 }

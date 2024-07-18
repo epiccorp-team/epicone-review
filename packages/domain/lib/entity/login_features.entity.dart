@@ -11,7 +11,7 @@ class LoginFeaturesEntity {
   String? name;
 
   @JsonKey(name: 'point_can_use_limit')
-  int? pointCanUseLimit;
+  double? pointCanUseLimit;
 
   LoginFeaturesEntity({
     this.key,

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'app/main/controller/main_controller.dart';
+import 'controller/main_controller.dart';
 import 'router/app_pages.dart';
-import 'theme.dart';
+import 'ui/common/theme.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -13,7 +13,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     final MainController rootController = MainController.to;
