@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:presentation/controller/login_controller.dart';
+import 'package:presentation/controller/user_controller.dart';
 import 'package:presentation/router/app_pages.dart';
 
 import '../wine/models/wine.dart';
@@ -16,7 +16,7 @@ class WineDetailScreen extends StatefulWidget {
 }
 
 class _WineDetailScreenState extends State<WineDetailScreen> {
-  final _loginController = LoginController.to;
+  final _loginController = UserController.to;
 
   late Wine wine;
 
@@ -58,10 +58,10 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
                 if (_loginController.user.value == null) {
                   var result = await Get.toNamed(Routes.LOGIN);
                   if (result == true) {
-                    Get.toNamed(Routes.ORDER);
+                    Get.toNamed(Routes.ORDER, arguments: {'wine': wine});
                   }
                 } else {
-                  Get.toNamed(Routes.ORDER);
+                  Get.toNamed(Routes.ORDER, arguments: {'wine': wine});
                 }
               },
               child: const Text(

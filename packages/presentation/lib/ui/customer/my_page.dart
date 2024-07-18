@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:presentation/controller/login_controller.dart';
+import 'package:presentation/controller/user_controller.dart';
 import 'package:presentation/router/app_pages.dart';
 
 class MyPage extends StatefulWidget {
@@ -14,7 +14,7 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
-  final LoginController _loginController = LoginController.to;
+  final UserController _loginController = UserController.to;
 
   @override
   Widget build(BuildContext context) {

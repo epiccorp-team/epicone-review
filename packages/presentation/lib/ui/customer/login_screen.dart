@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:presentation/controller/login_controller.dart';
+import 'package:presentation/controller/user_controller.dart';
 import 'package:presentation/router/app_pages.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final LoginController _loginController = LoginController.to;
+  final UserController _loginController = UserController.to;
 
   @override
   Widget build(BuildContext context) {

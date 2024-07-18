@@ -5,14 +5,16 @@ import 'package:get/get.dart';
 import 'package:domain/entity/login.entity.dart';
 import 'package:domain/usecase/login_usecase.dart';
 
-class LoginController extends GetxController {
-  static LoginController get to => Get.find();
+class UserController extends GetxController {
+  static UserController get to => Get.find();
 
   final LoginUsecase _loginUsecase;
 
-  LoginController(this._loginUsecase);
+  UserController(this._loginUsecase);
 
   final Rxn<LoginEntity?> user = Rxn(null);
+  final RxString userAddress = ''.obs;
+  final RxString userAddressDetail = ''.obs;
 
   Future<void> login({
     Function()? onSuccess,

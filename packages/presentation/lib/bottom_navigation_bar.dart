@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presentation/controller/login_controller.dart';
+import 'package:presentation/controller/user_controller.dart';
 import 'package:presentation/router/app_pages.dart';
-import 'package:presentation/ui/customer/login_screen.dart';
 
 class GetBottomNavigationController extends GetxController {
   static GetBottomNavigationController get to => Get.find();
@@ -15,7 +14,7 @@ class GetBottomNavigationController extends GetxController {
 }
 
 class GetBottomNavigationBar extends GetView<GetBottomNavigationController> {
-  final _loginController = LoginController.to;
+  final _loginController = UserController.to;
 
   GetBottomNavigationBar({super.key});
 
