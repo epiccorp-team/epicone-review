@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import 'controller/main_controller.dart';
 import 'router/app_pages.dart';
-import 'theme.dart';
+import 'ui/common/theme.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});

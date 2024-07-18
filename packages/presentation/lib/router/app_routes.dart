@@ -16,4 +16,5 @@ abstract class Routes {
 
   // 주문 영역
   static const ORDER = '/order';
+  static const ORDER_COMPLETE = '/order/order_complete';
 }

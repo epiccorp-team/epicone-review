@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:domain/entity/purchase.entity.dart';
+import 'package:domain/entity/purchase_error.entity.dart';
 import 'package:domain/usecase/purchase_usecase.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/get_rx.dart';
@@ -61,7 +63,10 @@ class PurchaseController extends GetxController {
     return '$header - $body - $tail';
   }
 
-  void purchase() async {
+  void purchase({
+    Function()? onSuccess,
+    Function(String)? onError,
+  }) async {
     var user = _userController.user.value;
     var result = await _purchaseUsecase.call(user?.id, {
       "address": userAddress.value,
@@ -71,6 +76,12 @@ class PurchaseController extends GetxController {
       "order_name": wine?.wine,
     });
 
-    print('[keykat] result::: ${result?.toJson()}');
+    print('[keykat] result : $result');
+
+    if (result is PurchaseErrorEntity) {
+      onError?.call(result.message ?? '');
+    } else {
+      onSuccess?.call();
+    }
   }
 }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:presentation/controller/purchase_controller.dart';
+import 'package:presentation/router/app_pages.dart';
+import 'package:presentation/ui/common/common_dialog.dart';
 
 import '../wine/models/wine.dart';
 
@@ -86,12 +88,59 @@ class _OrderScreenState extends State<OrderScreen> {
                     color: Colors.black,
                   ),
                   child: TextButton(
-                      onPressed: () {
-                        if (_exceedMaxPointError.value) {
+                      onPressed: () async {
+                        if (_deliveryController.text.isEmpty) {
+                          await CommonDialog.showCommonDialog(
+                            context,
+                            '구매하기 실패',
+                            '기본 주소를 입력해주세요.',
+                          );
+
                           return;
                         }
 
-                        _purchaseController.purchase();
+                        if (_deliveryDetailController.text.isEmpty) {
+                          await CommonDialog.showCommonDialog(
+                            context,
+                            '구매하기 실패',
+                            '상세 주소를 입력해주세요.',
+                          );
+
+                          return;
+                        }
+
+                        if (_usePointController.text.isEmpty) {
+                          await CommonDialog.showCommonDialog(
+                            context,
+                            '구매하기 실패',
+                            '포인트를 입력하세요.',
+                          );
+
+                          return;
+                        }
+
+                        if (_exceedMaxPointError.value) {
+                          await CommonDialog.showCommonDialog(
+                            context,
+                            '구매하기 실패',
+                            '사용 가능한 포인트를 입력하세요.',
+                          );
+
+                          return;
+                        }
+
+                        _purchaseController.purchase(
+                          onSuccess: () {
+                            Get.toNamed(Routes.ORDER_COMPLETE);
+                          },
+                          onError: (message) {
+                            CommonDialog.showCommonDialog(
+                              context,
+                              '구매하기 실패',
+                              message,
+                            );
+                          },
+                        );
                       },
                       child: const Text(
                         'Purchase',

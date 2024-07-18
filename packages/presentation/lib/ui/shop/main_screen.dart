@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:presentation/ui/customer/my_page.dart';
-import 'package:presentation/bottom_navigation_bar.dart';
+import 'package:presentation/ui/common/bottom_navigation_bar.dart';
 
 import '../../router/app_pages.dart';
 import 'wine_page.dart';
