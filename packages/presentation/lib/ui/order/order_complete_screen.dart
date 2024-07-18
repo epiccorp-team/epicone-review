@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class OrderCompleteScreen extends StatefulWidget {
   const OrderCompleteScreen({super.key});
@@ -14,7 +13,7 @@ class _OrderCompleteScreenState extends State<OrderCompleteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Container(
+        child: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
@@ -36,7 +35,9 @@ class _OrderCompleteScreenState extends State<OrderCompleteScreen> {
               Container(
                 alignment: Alignment.bottomCenter,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   child: Container(
                     width: MediaQuery.of(context).size.width / 4 * 3,
                     padding: const EdgeInsets.all(10),
