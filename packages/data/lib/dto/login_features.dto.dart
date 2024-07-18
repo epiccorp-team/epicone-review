@@ -12,7 +12,7 @@ class LoginFeaturesDto {
   String? name;
 
   @JsonKey(name: 'point_can_use_limit')
-  int? pointCanUseLimit;
+  double? pointCanUseLimit;
 
   LoginFeaturesDto({
     this.key,
