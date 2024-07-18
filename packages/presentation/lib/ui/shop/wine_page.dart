@@ -1,13 +1,12 @@
+import 'package:domain/entity/wine_entity.dart';
 import 'package:presentation/router/app_pages.dart';
 
-import '../product/wine_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../controller/main_controller.dart';
 import '../../controller/wine_controller.dart';
-import '../wine/models/wine.dart';
 
 class WinePage extends StatefulWidget {
   const WinePage({super.key});
@@ -20,7 +19,7 @@ class _WinePageState extends State<WinePage> {
   final MainController _rootController = MainController.to;
   final WineController _wineController = WineController.to;
 
-  List<Wine> _wines = [];
+  List<WineEntity> _wines = [];
 
   @override
   void initState() {

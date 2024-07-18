@@ -1,12 +1,10 @@
 import 'dart:math';
 
-import 'package:domain/entity/purchase.entity.dart';
 import 'package:domain/entity/purchase_error.entity.dart';
+import 'package:domain/entity/wine_entity.dart';
 import 'package:domain/usecase/purchase_usecase.dart';
 import 'package:get/get.dart';
-import 'package:get/get_rx/get_rx.dart';
 import 'package:presentation/controller/user_controller.dart';
-import 'package:presentation/ui/wine/models/wine.dart';
 
 class PurchaseController extends GetxController {
   static PurchaseController get to => Get.find();
@@ -14,7 +12,7 @@ class PurchaseController extends GetxController {
   final _userController = UserController.to;
   final _purchaseUsecase = Get.find<PurchaseUsecase>();
 
-  Wine? wine;
+  WineEntity? wine;
   var pointCanUseLimit = 0.0.obs;
   var maxCanUsePoint = 0.obs;
 

@@ -1,24 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'wine.dart';
+part of 'wine_dto.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Wine _$$_WineFromJson(Map<String, dynamic> json) => _$_Wine(
-      id: json['id'] as int? ?? 0,
+_$WineDtoImpl _$$WineDtoImplFromJson(Map<String, dynamic> json) =>
+    _$WineDtoImpl(
+      id: (json['id'] as num?)?.toInt() ?? 0,
       winery: json['winery'] as String? ?? '',
       wine: json['wine'] as String? ?? '',
       rating: json['rating'] == null
           ? null
-          : Rating.fromJson(json['rating'] as Map<String, dynamic>),
+          : RatingDto.fromJson(json['rating'] as Map<String, dynamic>),
       location: json['location'] as String? ?? '',
       image: json['image'] as String? ?? '',
-      price: json['price'] as int? ?? 0,
+      price: (json['price'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$_WineToJson(_$_Wine instance) => <String, dynamic>{
+Map<String, dynamic> _$$WineDtoImplToJson(_$WineDtoImpl instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'winery': instance.winery,
       'wine': instance.wine,
@@ -26,14 +28,4 @@ Map<String, dynamic> _$$_WineToJson(_$_Wine instance) => <String, dynamic>{
       'location': instance.location,
       'image': instance.image,
       'price': instance.price,
-    };
-
-_$_Rating _$$_RatingFromJson(Map<String, dynamic> json) => _$_Rating(
-      average: json['average'] as String? ?? '',
-      reviews: json['reviews'] as String? ?? '',
-    );
-
-Map<String, dynamic> _$$_RatingToJson(_$_Rating instance) => <String, dynamic>{
-      'average': instance.average,
-      'reviews': instance.reviews,
     };

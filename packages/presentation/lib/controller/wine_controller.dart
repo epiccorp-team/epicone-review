@@ -1,16 +1,15 @@
+import 'package:domain/entity/wine_entity.dart';
+import 'package:domain/usecase/wine_usecase.dart';
 import 'package:get/get.dart';
-
-import '../ui/wine/models/wine.dart';
-import '../ui/wine/repositories/wine_repository.dart';
 
 class WineController extends GetxController {
   static WineController get to => Get.find();
 
-  final WineRepository _wineRepository;
+  final WineUsecase _wineUsecase;
 
-  WineController(this._wineRepository);
+  WineController(this._wineUsecase);
 
-  final wines = <Wine>[].obs;
+  final wines = <WineEntity>[].obs;
 
   @override
   void onReady() async {
@@ -18,7 +17,7 @@ class WineController extends GetxController {
     super.onReady();
   }
 
-  Future<List<Wine>> fetchWine() async {
-    return await _wineRepository.fetchWine();
+  Future<List<WineEntity>> fetchWine() async {
+    return await _wineUsecase.call();
   }
 }
