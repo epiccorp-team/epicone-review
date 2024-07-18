@@ -1,10 +1,8 @@
+import 'package:domain/entity/wine_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:presentation/controller/user_controller.dart';
 import 'package:presentation/router/app_pages.dart';
-
-import '../wine/models/wine.dart';
 
 class WineDetailScreen extends StatefulWidget {
   const WineDetailScreen({
@@ -18,7 +16,7 @@ class WineDetailScreen extends StatefulWidget {
 class _WineDetailScreenState extends State<WineDetailScreen> {
   final _loginController = UserController.to;
 
-  late Wine wine;
+  late WineEntity wine;
 
   @override
   void initState() {

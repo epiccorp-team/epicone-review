@@ -1,13 +1,10 @@
-import 'dart:math';
-
+import 'package:domain/entity/wine_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:presentation/controller/purchase_controller.dart';
 import 'package:presentation/router/app_pages.dart';
 import 'package:presentation/ui/common/common_dialog.dart';
-
-import '../wine/models/wine.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({super.key});
@@ -18,7 +15,7 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   final _purchaseController = PurchaseController.to;
-  late Wine? wine;
+  late WineEntity? wine;
 
   final _deliveryController = TextEditingController();
   final _deliveryDetailController = TextEditingController();

@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'wine.dart';
+part of 'wine_entity.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -12,14 +12,14 @@ part of 'wine.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Wine _$WineFromJson(Map<String, dynamic> json) {
-  return _Wine.fromJson(json);
+WineEntity _$WineEntityFromJson(Map<String, dynamic> json) {
+  return _WineEntity.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Wine {
+mixin _$WineEntity {
   @JsonKey(name: 'id')
   int get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'winery')
@@ -27,7 +27,7 @@ mixin _$Wine {
   @JsonKey(name: 'wine')
   String get wine => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
-  Rating? get rating => throw _privateConstructorUsedError;
+  RatingEntity? get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'location')
   String get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'image')
@@ -37,30 +37,32 @@ mixin _$Wine {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $WineCopyWith<Wine> get copyWith => throw _privateConstructorUsedError;
+  $WineEntityCopyWith<WineEntity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WineCopyWith<$Res> {
-  factory $WineCopyWith(Wine value, $Res Function(Wine) then) =
-      _$WineCopyWithImpl<$Res, Wine>;
+abstract class $WineEntityCopyWith<$Res> {
+  factory $WineEntityCopyWith(
+          WineEntity value, $Res Function(WineEntity) then) =
+      _$WineEntityCopyWithImpl<$Res, WineEntity>;
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'winery') String winery,
       @JsonKey(name: 'wine') String wine,
-      @JsonKey(name: 'rating') Rating? rating,
+      @JsonKey(name: 'rating') RatingEntity? rating,
       @JsonKey(name: 'location') String location,
       @JsonKey(name: 'image') String image,
       @JsonKey(name: 'price') int price});
 
-  $RatingCopyWith<$Res>? get rating;
+  $RatingEntityCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
-class _$WineCopyWithImpl<$Res, $Val extends Wine>
-    implements $WineCopyWith<$Res> {
-  _$WineCopyWithImpl(this._value, this._then);
+class _$WineEntityCopyWithImpl<$Res, $Val extends WineEntity>
+    implements $WineEntityCopyWith<$Res> {
+  _$WineEntityCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -94,7 +96,7 @@ class _$WineCopyWithImpl<$Res, $Val extends Wine>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating?,
+              as RatingEntity?,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -112,40 +114,44 @@ class _$WineCopyWithImpl<$Res, $Val extends Wine>
 
   @override
   @pragma('vm:prefer-inline')
-  $RatingCopyWith<$Res>? get rating {
+  $RatingEntityCopyWith<$Res>? get rating {
     if (_value.rating == null) {
       return null;
     }
 
-    return $RatingCopyWith<$Res>(_value.rating!, (value) {
+    return $RatingEntityCopyWith<$Res>(_value.rating!, (value) {
       return _then(_value.copyWith(rating: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_WineCopyWith<$Res> implements $WineCopyWith<$Res> {
-  factory _$$_WineCopyWith(_$_Wine value, $Res Function(_$_Wine) then) =
-      __$$_WineCopyWithImpl<$Res>;
+abstract class _$$WineEntityImplCopyWith<$Res>
+    implements $WineEntityCopyWith<$Res> {
+  factory _$$WineEntityImplCopyWith(
+          _$WineEntityImpl value, $Res Function(_$WineEntityImpl) then) =
+      __$$WineEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'id') int id,
       @JsonKey(name: 'winery') String winery,
       @JsonKey(name: 'wine') String wine,
-      @JsonKey(name: 'rating') Rating? rating,
+      @JsonKey(name: 'rating') RatingEntity? rating,
       @JsonKey(name: 'location') String location,
       @JsonKey(name: 'image') String image,
       @JsonKey(name: 'price') int price});
 
   @override
-  $RatingCopyWith<$Res>? get rating;
+  $RatingEntityCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
-class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
-    implements _$$_WineCopyWith<$Res> {
-  __$$_WineCopyWithImpl(_$_Wine _value, $Res Function(_$_Wine) _then)
+class __$$WineEntityImplCopyWithImpl<$Res>
+    extends _$WineEntityCopyWithImpl<$Res, _$WineEntityImpl>
+    implements _$$WineEntityImplCopyWith<$Res> {
+  __$$WineEntityImplCopyWithImpl(
+      _$WineEntityImpl _value, $Res Function(_$WineEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -159,7 +165,7 @@ class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
     Object? image = null,
     Object? price = null,
   }) {
-    return _then(_$_Wine(
+    return _then(_$WineEntityImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -175,7 +181,7 @@ class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
       rating: freezed == rating
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
-              as Rating?,
+              as RatingEntity?,
       location: null == location
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
@@ -194,8 +200,8 @@ class __$$_WineCopyWithImpl<$Res> extends _$WineCopyWithImpl<$Res, _$_Wine>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Wine implements _Wine {
-  _$_Wine(
+class _$WineEntityImpl implements _WineEntity {
+  _$WineEntityImpl(
       {@JsonKey(name: 'id') this.id = 0,
       @JsonKey(name: 'winery') this.winery = '',
       @JsonKey(name: 'wine') this.wine = '',
@@ -204,7 +210,8 @@ class _$_Wine implements _Wine {
       @JsonKey(name: 'image') this.image = '',
       @JsonKey(name: 'price') this.price = 0});
 
-  factory _$_Wine.fromJson(Map<String, dynamic> json) => _$$_WineFromJson(json);
+  factory _$WineEntityImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WineEntityImplFromJson(json);
 
   @override
   @JsonKey(name: 'id')
@@ -217,7 +224,7 @@ class _$_Wine implements _Wine {
   final String wine;
   @override
   @JsonKey(name: 'rating')
-  final Rating? rating;
+  final RatingEntity? rating;
   @override
   @JsonKey(name: 'location')
   final String location;
@@ -230,14 +237,14 @@ class _$_Wine implements _Wine {
 
   @override
   String toString() {
-    return 'Wine(id: $id, winery: $winery, wine: $wine, rating: $rating, location: $location, image: $image, price: $price)';
+    return 'WineEntity(id: $id, winery: $winery, wine: $wine, rating: $rating, location: $location, image: $image, price: $price)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Wine &&
+            other is _$WineEntityImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.winery, winery) || other.winery == winery) &&
             (identical(other.wine, wine) || other.wine == wine) &&
@@ -256,28 +263,29 @@ class _$_Wine implements _Wine {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WineCopyWith<_$_Wine> get copyWith =>
-      __$$_WineCopyWithImpl<_$_Wine>(this, _$identity);
+  _$$WineEntityImplCopyWith<_$WineEntityImpl> get copyWith =>
+      __$$WineEntityImplCopyWithImpl<_$WineEntityImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WineToJson(
+    return _$$WineEntityImplToJson(
       this,
     );
   }
 }
 
-abstract class _Wine implements Wine {
-  factory _Wine(
+abstract class _WineEntity implements WineEntity {
+  factory _WineEntity(
       {@JsonKey(name: 'id') final int id,
       @JsonKey(name: 'winery') final String winery,
       @JsonKey(name: 'wine') final String wine,
-      @JsonKey(name: 'rating') final Rating? rating,
+      @JsonKey(name: 'rating') final RatingEntity? rating,
       @JsonKey(name: 'location') final String location,
       @JsonKey(name: 'image') final String image,
-      @JsonKey(name: 'price') final int price}) = _$_Wine;
+      @JsonKey(name: 'price') final int price}) = _$WineEntityImpl;
 
-  factory _Wine.fromJson(Map<String, dynamic> json) = _$_Wine.fromJson;
+  factory _WineEntity.fromJson(Map<String, dynamic> json) =
+      _$WineEntityImpl.fromJson;
 
   @override
   @JsonKey(name: 'id')
@@ -290,7 +298,7 @@ abstract class _Wine implements Wine {
   String get wine;
   @override
   @JsonKey(name: 'rating')
-  Rating? get rating;
+  RatingEntity? get rating;
   @override
   @JsonKey(name: 'location')
   String get location;
@@ -302,165 +310,6 @@ abstract class _Wine implements Wine {
   int get price;
   @override
   @JsonKey(ignore: true)
-  _$$_WineCopyWith<_$_Wine> get copyWith => throw _privateConstructorUsedError;
-}
-
-Rating _$RatingFromJson(Map<String, dynamic> json) {
-  return _Rating.fromJson(json);
-}
-
-/// @nodoc
-mixin _$Rating {
-  @JsonKey(name: 'average')
-  String get average => throw _privateConstructorUsedError;
-  @JsonKey(name: 'reviews')
-  String get reviews => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $RatingCopyWith<Rating> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $RatingCopyWith<$Res> {
-  factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
-      _$RatingCopyWithImpl<$Res, Rating>;
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'average') String average,
-      @JsonKey(name: 'reviews') String reviews});
-}
-
-/// @nodoc
-class _$RatingCopyWithImpl<$Res, $Val extends Rating>
-    implements $RatingCopyWith<$Res> {
-  _$RatingCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? average = null,
-    Object? reviews = null,
-  }) {
-    return _then(_value.copyWith(
-      average: null == average
-          ? _value.average
-          : average // ignore: cast_nullable_to_non_nullable
-              as String,
-      reviews: null == reviews
-          ? _value.reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
-  factory _$$_RatingCopyWith(_$_Rating value, $Res Function(_$_Rating) then) =
-      __$$_RatingCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(name: 'average') String average,
-      @JsonKey(name: 'reviews') String reviews});
-}
-
-/// @nodoc
-class __$$_RatingCopyWithImpl<$Res>
-    extends _$RatingCopyWithImpl<$Res, _$_Rating>
-    implements _$$_RatingCopyWith<$Res> {
-  __$$_RatingCopyWithImpl(_$_Rating _value, $Res Function(_$_Rating) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? average = null,
-    Object? reviews = null,
-  }) {
-    return _then(_$_Rating(
-      average: null == average
-          ? _value.average
-          : average // ignore: cast_nullable_to_non_nullable
-              as String,
-      reviews: null == reviews
-          ? _value.reviews
-          : reviews // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Rating implements _Rating {
-  _$_Rating(
-      {@JsonKey(name: 'average') this.average = '',
-      @JsonKey(name: 'reviews') this.reviews = ''});
-
-  factory _$_Rating.fromJson(Map<String, dynamic> json) =>
-      _$$_RatingFromJson(json);
-
-  @override
-  @JsonKey(name: 'average')
-  final String average;
-  @override
-  @JsonKey(name: 'reviews')
-  final String reviews;
-
-  @override
-  String toString() {
-    return 'Rating(average: $average, reviews: $reviews)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Rating &&
-            (identical(other.average, average) || other.average == average) &&
-            (identical(other.reviews, reviews) || other.reviews == reviews));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, average, reviews);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
-      __$$_RatingCopyWithImpl<_$_Rating>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_RatingToJson(
-      this,
-    );
-  }
-}
-
-abstract class _Rating implements Rating {
-  factory _Rating(
-      {@JsonKey(name: 'average') final String average,
-      @JsonKey(name: 'reviews') final String reviews}) = _$_Rating;
-
-  factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
-
-  @override
-  @JsonKey(name: 'average')
-  String get average;
-  @override
-  @JsonKey(name: 'reviews')
-  String get reviews;
-  @override
-  @JsonKey(ignore: true)
-  _$$_RatingCopyWith<_$_Rating> get copyWith =>
+  _$$WineEntityImplCopyWith<_$WineEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
