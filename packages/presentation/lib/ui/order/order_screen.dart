@@ -26,7 +26,8 @@ class _OrderScreenState extends State<OrderScreen> {
 
   late String _orderCode;
 
-  late int maxCanUsePoint;
+  late double _pointCanUseLimit;
+  late int _maxCanUsePoint;
 
   final _deliveryController = TextEditingController();
   final _deliveryDetailController = TextEditingController();
@@ -42,9 +43,9 @@ class _OrderScreenState extends State<OrderScreen> {
     _orderCode = randomOrderId();
 
     var user = _userController.user.value;
-    var pointCanUseLimit = user?.features?.first.pointCanUseLimit;
-    maxCanUsePoint = min(
-      ((wine?.price ?? 0) * (pointCanUseLimit ?? 0)).toInt(),
+    _pointCanUseLimit = user?.features?.first.pointCanUseLimit ?? 0.0;
+    _maxCanUsePoint = min(
+      ((wine?.price ?? 0) * (_pointCanUseLimit ?? 0)).toInt(),
       user?.pointRemained ?? 0,
     );
 
@@ -58,7 +59,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
     _usePointController.addListener(() {
       var value = int.parse(_usePointController.text);
-      if (value > maxCanUsePoint) {
+      if (value > _maxCanUsePoint) {
         _exceedMaxPointError.value = true;
       } else {
         _exceedMaxPointError.value = false;
@@ -102,6 +103,7 @@ class _OrderScreenState extends State<OrderScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context).size.height,
             padding: const EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,6 +114,26 @@ class _OrderScreenState extends State<OrderScreen> {
                 _deliveryInfo(),
                 const Padding(padding: EdgeInsets.only(top: 50)),
                 _pointInfo(),
+                const Spacer(),
+                Container(
+                  margin: const EdgeInsets.only(bottom: 40),
+                  alignment: Alignment.bottomCenter,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: TextButton(
+                      onPressed: () {
+                        if (_exceedMaxPointError.value) {
+                          return;
+                        }
+                      },
+                      child: const Text(
+                        'Purchase',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      )),
+                ),
               ],
             ),
           ),
@@ -334,30 +356,30 @@ class _OrderScreenState extends State<OrderScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    const Row(
+                    Row(
                       children: [
                         SizedBox(
                             width: 18,
                             height: 18,
                             child: Tooltip(
                               height: 40,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                               ),
-                              showDuration: Duration(milliseconds: 4000),
+                              showDuration: const Duration(milliseconds: 4000),
                               message:
-                                  '사용 가능한 최대 포인트는\n상품 가격 * 적립 가능한 포인트 비율 내에서\n내가 보유한 포인트로 결정돼요.',
+                                  '사용 가능한 최대 포인트는\n해당 상품 기준으로 [상품 가격 * ${(_pointCanUseLimit * 100).toInt()}%] 내에서\n내가 보유한 포인트로 결정돼요.',
                               triggerMode: TooltipTriggerMode.tap,
-                              child: Icon(
+                              child: const Icon(
                                 Icons.info_rounded,
                                 size: 14,
                               ),
                             )),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.symmetric(horizontal: 2),
                         ),
-                        Text(
+                        const Text(
                           '최대 사용 가능 포인트',
                           style: TextStyle(
                             fontSize: 10,
@@ -366,7 +388,7 @@ class _OrderScreenState extends State<OrderScreen> {
                       ],
                     ),
                     Text(
-                      '$maxCanUsePoint',
+                      '$_maxCanUsePoint',
                     ),
                   ],
                 )
