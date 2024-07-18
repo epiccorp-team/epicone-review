@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:presentation/controller/login_controller.dart';
+import 'package:presentation/router/app_pages.dart';
 
 import '../wine/models/wine.dart';
 
@@ -14,6 +16,8 @@ class WineDetailScreen extends StatefulWidget {
 }
 
 class _WineDetailScreenState extends State<WineDetailScreen> {
+  final _loginController = LoginController.to;
+
   late Wine wine;
 
   @override
@@ -35,7 +39,7 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
           Center(
             child: Image.network(wine.image),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             wine.winery,
             textAlign: TextAlign.center,
@@ -49,7 +53,17 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                // 로그인이 안 되어있으면 로그인 후 주문 페이지로 이동할 수 있게
+                if (_loginController.user.value == null) {
+                  var result = await Get.toNamed(Routes.LOGIN);
+                  if (result == true) {
+                    Get.toNamed(Routes.ORDER);
+                  }
+                } else {
+                  Get.toNamed(Routes.ORDER);
+                }
+              },
               child: const Text(
                 'Purchase',
                 style: TextStyle(
