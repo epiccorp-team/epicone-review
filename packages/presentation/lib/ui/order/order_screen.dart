@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:presentation/controller/user_controller.dart';
 
@@ -85,7 +87,7 @@ class _OrderScreenState extends State<OrderScreen> {
                 const Padding(padding: EdgeInsets.only(top: 50)),
                 _deliveryInfo(),
                 const Padding(padding: EdgeInsets.only(top: 50)),
-                // _pointInfo(),
+                _pointInfo(),
               ],
             ),
           ),
@@ -197,7 +199,116 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  // Widget _pointInfo() {
+  Widget _pointInfo() {
+    var user = _userController.user.value;
+    var pointCanUseLimit = user?.features?.first.pointCanUseLimit;
+    var maxCanUsePoint = min(
+      (wine?.price ?? 0) * (pointCanUseLimit ?? 0),
+      user?.pointRemained ?? 0,
+    );
 
-  // }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          '적립금 정보',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Padding(padding: EdgeInsets.only(top: 10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              '상품 가격',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            Text(
+              '\$${wine?.price}',
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        const Padding(padding: EdgeInsets.only(top: 10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              '적립금',
+              style: TextStyle(
+                fontSize: 18,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                SizedBox(
+                  height: 30,
+                  width: 150,
+                  child: TextField(
+                    controller: _deliveryController,
+                    style: const TextStyle(
+                      fontSize: 12,
+                    ),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+                const Padding(padding: EdgeInsets.only(top: 4)),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Row(
+                      children: [
+                        SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: Tooltip(
+                              height: 40,
+                              textStyle: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                              showDuration: Duration(milliseconds: 4000),
+                              message:
+                                  '사용 가능한 최대 포인트는\n상품 가격 * 적립 가능한 포인트 비율 내에서\n내가 보유한 포인트로 결정돼요.',
+                              triggerMode: TooltipTriggerMode.tap,
+                              child: Icon(
+                                Icons.info_rounded,
+                                size: 14,
+                              ),
+                            )),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 2),
+                        ),
+                        Text(
+                          '최대 사용 가능 포인트',
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      '$maxCanUsePoint',
+                    ),
+                  ],
+                )
+              ],
+            )
+          ],
+        ),
+      ],
+    );
+  }
 }
