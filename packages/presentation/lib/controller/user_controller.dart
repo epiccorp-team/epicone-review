@@ -17,6 +17,7 @@ class UserController extends GetxController {
   final Rxn<LoginEntity?> user = Rxn(null);
   final RxString userAddress = ''.obs;
   final RxString userAddressDetail = ''.obs;
+  final RxInt usePoint = 0.obs;
 
   Future<void> login({
     Function()? onSuccess,

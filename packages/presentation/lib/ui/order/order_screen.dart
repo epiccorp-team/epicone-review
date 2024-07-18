@@ -25,8 +25,13 @@ class _OrderScreenState extends State<OrderScreen> {
 
   late String _orderCode;
 
+  late int maxCanUsePoint;
+
   final _deliveryController = TextEditingController();
   final _deliveryDetailController = TextEditingController();
+  final _usePointController = TextEditingController();
+
+  final ValueNotifier<bool> _exceedMaxPointError = ValueNotifier(false);
 
   @override
   void initState() {
@@ -35,12 +40,29 @@ class _OrderScreenState extends State<OrderScreen> {
 
     _orderCode = randomOrderId();
 
+    var user = _userController.user.value;
+    var pointCanUseLimit = user?.features?.first.pointCanUseLimit;
+    maxCanUsePoint = min(
+      ((wine?.price ?? 0) * (pointCanUseLimit ?? 0)).toInt(),
+      user?.pointRemained ?? 0,
+    );
+
     _deliveryController.addListener(() {
       _userController.userAddress.value = _deliveryController.text;
     });
 
     _deliveryDetailController.addListener(() {
       _userController.userAddressDetail.value = _deliveryDetailController.text;
+    });
+
+    _usePointController.addListener(() {
+      var value = int.parse(_usePointController.text);
+      if (value > maxCanUsePoint) {
+        _exceedMaxPointError.value = true;
+      } else {
+        _exceedMaxPointError.value = false;
+        _userController.usePoint.value = int.parse(_usePointController.text);
+      }
     });
   }
 
@@ -50,6 +72,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
     _deliveryController.dispose();
     _deliveryDetailController.dispose();
+    _usePointController.dispose();
   }
 
   String randomOrderId() {
@@ -200,13 +223,6 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget _pointInfo() {
-    var user = _userController.user.value;
-    var pointCanUseLimit = user?.features?.first.pointCanUseLimit;
-    var maxCanUsePoint = min(
-      (wine?.price ?? 0) * (pointCanUseLimit ?? 0),
-      user?.pointRemained ?? 0,
-    );
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -251,18 +267,63 @@ class _OrderScreenState extends State<OrderScreen> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                SizedBox(
-                  height: 30,
-                  width: 150,
-                  child: TextField(
-                    controller: _deliveryController,
-                    style: const TextStyle(
-                      fontSize: 12,
-                    ),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
+                ValueListenableBuilder(
+                  valueListenable: _exceedMaxPointError,
+                  builder: (context, error, child) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        SizedBox(
+                          height: 30,
+                          width: 150,
+                          child: TextFormField(
+                            controller: _usePointController,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.symmetric(
+                                  vertical: 25.0, horizontal: 10.0),
+                              // errorText: error ? '보유한 포인트를 초과했어요.' : null,
+                              errorStyle: const TextStyle(
+                                  fontSize: 0, color: Colors.red),
+                              errorText: !error ? null : '',
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2,
+                                ),
+                              ),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  width: 2,
+                                ),
+                              ),
+                              focusedErrorBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                width: 2,
+                                color: Colors.red,
+                              )),
+                              errorBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                width: 2,
+                                color: Colors.red,
+                              )),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: !error ? 0 : null,
+                          child: const Text(
+                            '최대 포인트를 초과했어요.',
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.red,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
                 const Padding(padding: EdgeInsets.only(top: 4)),
                 Column(
