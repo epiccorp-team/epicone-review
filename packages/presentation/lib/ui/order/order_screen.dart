@@ -43,13 +43,16 @@ class _OrderScreenState extends State<OrderScreen> {
     });
 
     _usePointController.addListener(() {
-      var value = int.parse(_usePointController.text);
+      var value = int.parse(
+        _usePointController.text.isEmpty ? '0' : _usePointController.text,
+      );
       if (value > _purchaseController.maxCanUsePoint.value) {
         _exceedMaxPointError.value = true;
       } else {
         _exceedMaxPointError.value = false;
-        _purchaseController.usePoint.value =
-            int.parse(_usePointController.text);
+        _purchaseController.usePoint.value = int.parse(
+          _usePointController.text.isEmpty ? '0' : _usePointController.text,
+        );
       }
     });
   }
