@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
-import '../models/wine.dart';
+import '../wine/models/wine.dart';
 
 class WineDetailScreen extends StatefulWidget {
   const WineDetailScreen({
@@ -40,6 +41,24 @@ class _WineDetailScreenState extends State<WineDetailScreen> {
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.displayLarge,
           ),
+          const Spacer(),
+          Container(
+            width: MediaQuery.of(context).size.width / 5 * 4,
+            decoration: BoxDecoration(
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Purchase',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const Padding(padding: EdgeInsets.only(bottom: 30)),
         ],
       ),
     );

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:presentation/app/my_page/ui/my_page.dart';
-import 'package:presentation/app/wine/ui/wine_detail_screen.dart';
+import 'package:presentation/ui/customer/login_screen.dart';
+import 'package:presentation/ui/customer/my_page.dart';
+import 'package:presentation/ui/order/order_screen.dart';
+import 'package:presentation/ui/product/wine_detail_screen.dart';
 
-import '../app/main/ui/main_screen.dart';
-import '../app/wine/bindings/wine_binding.dart';
-import '../app/wine/ui/wine_page.dart';
+import '../ui/shop/main_screen.dart';
+import '../bindings/wine_binding.dart';
+import '../ui/shop/wine_page.dart';
 
 part 'app_routes.dart';
 
@@ -28,20 +30,25 @@ class AppPages {
         ),
       ],
     ),
-
     GetPage(
       participatesInRootNavigator: true,
       name: Routes.WINE_DETAIL,
       page: () => const WineDetailScreen(),
-      bindings: [
-        
-      ],
     ),
-
     GetPage(
       participatesInRootNavigator: true,
       name: Routes.MY_PAGE,
       page: () => const MyPage(),
+    ),
+    GetPage(
+      participatesInRootNavigator: true,
+      name: Routes.LOGIN,
+      page: () => const LoginScreen(),
+    ),
+    GetPage(
+      participatesInRootNavigator: true,
+      name: Routes.ORDER,
+      page: () => const OrderScreen(),
     ),
   ];
 }

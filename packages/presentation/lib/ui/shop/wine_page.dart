@@ -1,13 +1,13 @@
 import 'package:presentation/router/app_pages.dart';
 
-import 'wine_detail_screen.dart';
+import '../product/wine_detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../main/controller/main_controller.dart';
-import '../controllers/wine_controller.dart';
-import '../models/wine.dart';
+import '../../controller/main_controller.dart';
+import '../../controller/wine_controller.dart';
+import '../wine/models/wine.dart';
 
 class WinePage extends StatefulWidget {
   const WinePage({super.key});
@@ -96,7 +96,8 @@ class _WinePageState extends State<WinePage> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.only(top: 0, bottom: 40, left: 5, right: 5),
+              padding:
+                  const EdgeInsets.only(top: 0, bottom: 40, left: 5, right: 5),
               sliver: SliverList.builder(
                 itemBuilder: (context, index) {
                   final item = _wines[index];
@@ -104,7 +105,10 @@ class _WinePageState extends State<WinePage> {
                   return Card(
                     child: ListTile(
                       onTap: () {
-                        Get.toNamed(Routes.WINE_DETAIL, arguments: {'wine': item});
+                        Get.toNamed(
+                          Routes.WINE_DETAIL,
+                          arguments: {'wine': item},
+                        );
                       },
                       title: Text(item.wine,
                           style: Theme.of(context).textTheme.titleLarge),

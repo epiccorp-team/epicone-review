@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../models/wine.dart';
-import '../repositories/wine_repository.dart';
+import '../ui/wine/models/wine.dart';
+import '../ui/wine/repositories/wine_repository.dart';
 
 class WineController extends GetxController {
   static WineController get to => Get.find();

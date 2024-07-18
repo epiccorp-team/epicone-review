@@ -7,19 +7,23 @@ import 'package:domain/usecase/login_usecase.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find();
-  
+
   final LoginUsecase _loginUsecase;
 
   LoginController(this._loginUsecase);
 
   final Rxn<LoginEntity?> user = Rxn(null);
 
-  Future<void> login({Function(String)? onError}) async {
+  Future<void> login({
+    Function()? onSuccess,
+    Function(String)? onError,
+  }) async {
     var userEntity = await _loginUsecase.call();
 
     if (userEntity is LoginErrorEntity) {
       onError?.call(userEntity.message ?? '');
     } else {
+      onSuccess?.call();
       user.value = userEntity;
     }
   }
