@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:presentation/controller/user_controller.dart';
@@ -277,6 +278,10 @@ class _OrderScreenState extends State<OrderScreen> {
                           height: 30,
                           width: 150,
                           child: TextFormField(
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp("[0-9]")),
+                            ],
                             controller: _usePointController,
                             style: const TextStyle(
                               fontSize: 12,
