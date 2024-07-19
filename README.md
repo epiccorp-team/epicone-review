@@ -1,4 +1,4 @@
-# Fluter 코드 테스트 프로젝트 : "Wine Store"
+# Flutter 코드 테스트 프로젝트 : "Wine Store"
 
 이 프로젝트는 아래 환경에서 제작되었습니다.
 
